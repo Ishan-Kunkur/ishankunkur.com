@@ -18,7 +18,7 @@ And here's the thing worth sitting with: that wall of craft wasn't only an obsta
 
 AI collapsed the cost of producing the first working version. The distance from "I wonder if…" to "here's a thing that runs" went from weeks to an afternoon.
 
-I felt this most on side projects. I had an idea for a scanner that watches the market and surfaces asymmetric options setups — the kind of thing I'd have filed under "someday, if I ever get a long weekend." Instead I had a rough version pulling live data and ranking candidates the same evening I thought of it. Same story with a small dashboard for watching stablecoins. The idea-to-prototype gap, the thing that used to eat the whole project, basically vanished.
+I felt this most on side projects. I'd wanted a personal site for years — a place to show more of who I am than a résumé can — and it always stalled at the exact part where I'd have to build the thing. This time I had a working version live within a couple of evenings. You're reading it right now. The idea-to-prototype gap, the thing that used to eat the whole project, basically vanished.
 
 But let me correct a cliché before I accidentally repeat it. People love to say ideas are cheap. They're not. The raw spark is abundant — sparks show up in the shower and at 11pm — but a genuinely good idea, the kind with real insight that's non-obvious and turns out to be right, is rare. What's cheap is the thought. What's expensive is knowing which thought is worth your weekend. AI made the working version cheap to produce; it did nothing to make good judgment about what to build cheap. If anything it raised the stakes, because now you can build the wrong thing much faster.
 
