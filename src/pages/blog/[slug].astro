@@ -15,7 +15,7 @@ const { Content } = await render(post);
 const { title, description, date, cover, coverAlt, readingTime } = post.data;
 ---
 
-<Base title={`${title} · Ishan Kunkur`} description={description}>
+<Base title={`${title} · Ishan Kunkur`} description={description} image={cover}>
   <article class="prose">
     <header class="post-header">
       <p class="post-meta">
