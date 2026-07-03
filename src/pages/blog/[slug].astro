@@ -12,12 +12,13 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const { title, description, date, cover, coverAlt, readingTime } = post.data;
+const { title, description, date, cover, coverAlt, readingTime, tags = [] } = post.data;
 
 const site = 'https://ishankunkur.com';
 const postUrl = `${site}/blog/${post.id}/`;
 const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(postUrl)}`;
 const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
+const tagSlug = (t) => t.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <Base title={`${title} · Ishan Kunkur`} description={description} image={cover}>
@@ -30,6 +31,11 @@ const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURICo
       </p>
       <h1 class="post-title">{title}</h1>
       {description && <p class="post-subtitle">{description}</p>}
+      {tags.length > 0 && (
+        <div class="tags-row">
+          {tags.map((t) => <a class="tag" href={`/blog/tags/${tagSlug(t)}/`}>{t}</a>)}
+        </div>
+      )}
     </header>
 
     {cover && <img class="post-cover" src={cover} alt={coverAlt ?? title} />}
@@ -42,6 +48,13 @@ const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURICo
       <a class="share-btn" href={xUrl} target="_blank" rel="noopener">X</a>
       <a class="share-btn" href={liUrl} target="_blank" rel="noopener">LinkedIn</a>
     </div>
+
+    <p class="discuss">
+      Got a take on this? Come argue with me on
+      <a href="https://x.com/yagilabs" target="_blank" rel="noopener">X</a> or
+      <a href="https://www.linkedin.com/in/ishankunkur" target="_blank" rel="noopener">LinkedIn</a>.
+      I read everything.
+    </p>
 
     <p class="disclaimer">
       <strong>A note:</strong> The views here are my own and don't represent my

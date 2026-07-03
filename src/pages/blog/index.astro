@@ -6,6 +6,9 @@ import PostCard from '../../components/PostCard.astro';
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const tagSlug = (t) => t.toLowerCase().replace(/\s+/g, '-');
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags ?? []))].sort();
 ---
 
 <Base title="Writing · Ishan Kunkur" description="Occasional writing on whatever I'm thinking about.">
@@ -13,6 +16,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
     <h1>Writing</h1>
     <p>Occasional notes on whatever I'm thinking about: products, AI, books, and the rest.</p>
   </section>
+
+  {allTags.length > 0 && (
+    <section class="section" style="padding: 8px 0 0;">
+      <div class="tags-row">
+        {allTags.map((t) => <a class="tag" href={`/blog/tags/${tagSlug(t)}/`}>{t}</a>)}
+      </div>
+    </section>
+  )}
 
   <section class="section" style="padding-top: 24px;">
     {posts.map((post) => <PostCard post={post} />)}

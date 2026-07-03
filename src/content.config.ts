@@ -11,6 +11,7 @@ const blog = defineCollection({
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
     readingTime: z.string().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 

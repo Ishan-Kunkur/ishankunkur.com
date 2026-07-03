@@ -1,0 +1,36 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import PostCard from '../../../components/PostCard.astro';
+
+export async function getStaticPaths() {
+  const tagSlug = (t) => t.toLowerCase().replace(/\s+/g, '-');
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tagMap = new Map();
+  for (const post of posts) {
+    for (const t of post.data.tags ?? []) {
+      const slug = tagSlug(t);
+      if (!tagMap.has(slug)) tagMap.set(slug, { label: t, posts: [] });
+      tagMap.get(slug).posts.push(post);
+    }
+  }
+  return [...tagMap.entries()].map(([slug, { label, posts }]) => ({
+    params: { tag: slug },
+    props: { label, posts: posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()) },
+  }));
+}
+
+const { label, posts } = Astro.props;
+---
+
+<Base title={`${label} · Writing · Ishan Kunkur`} description={`Posts tagged ${label}.`}>
+  <section class="hero" style="padding: 64px 0 24px;">
+    <p class="post-meta"><a href="/blog">← All writing</a></p>
+    <h1>Tagged “{label}”</h1>
+    <p>{posts.length} {posts.length === 1 ? 'post' : 'posts'}.</p>
+  </section>
+
+  <section class="section" style="padding-top: 24px;">
+    {posts.map((post) => <PostCard post={post} />)}
+  </section>
+</Base>

@@ -5,6 +5,7 @@ date: 2026-07-02
 readingTime: "7 min read"
 cover: "/blog/ai-fast-track-cover.png"
 coverAlt: "AI Is a Fast Track to Average"
+tags: ["AI", "Product", "Building"]
 draft: false
 ---
 

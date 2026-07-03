@@ -1,12 +1,17 @@
 ---
 const { post } = Astro.props;
-const { title, description, date, cover, readingTime } = post.data;
+const { title, description, date, cover, readingTime, tags = [] } = post.data;
 const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 
 <a class="post-card" href={`/blog/${post.id}/`}>
   {cover && <img class="post-card-thumb" src={cover} alt="" loading="lazy" />}
   <div class="post-card-body">
+    {tags.length > 0 && (
+      <div class="post-card-tags">
+        {tags.slice(0, 3).map((t) => <span class="tag">{t}</span>)}
+      </div>
+    )}
     <h3 class="post-card-title">{title}</h3>
     {description && <p class="post-card-desc">{description}</p>}
     <div class="post-card-meta">
