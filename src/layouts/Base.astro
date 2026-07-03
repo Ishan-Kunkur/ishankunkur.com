@@ -1,0 +1,77 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Ishan Kunkur, product leader in risk, payments, and AI.' } = Astro.props;
+const site = 'https://ishankunkur.com';
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site} />
+    <meta property="og:image" content={`${site}/og.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site}/og.png`} />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="nav-brand">ishan kunkur</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </label>
+        <div class="nav-links">
+          <a href="/#about">About</a>
+          <a href="/#projects">Work</a>
+          <a href="/#journey">My Journey</a>
+          <a href="/reading">Reading</a>
+        </div>
+      </nav>
+
+      <slot />
+
+      <footer class="footer">
+        <span>© {year} Ishan Kunkur</span>
+        <span>
+          <a href="https://github.com/Ishan-Kunkur" target="_blank" rel="noopener">GitHub</a>
+          &nbsp;·&nbsp;
+          <a href="https://www.linkedin.com/in/ishankunkur" target="_blank" rel="noopener">LinkedIn</a>
+        </span>
+      </footer>
+    </div>
+    <script is:inline>
+      // Close the mobile menu after tapping a nav link
+      document.querySelectorAll('.nav-links a').forEach((link) => {
+        link.addEventListener('click', () => {
+          const toggle = document.getElementById('nav-toggle');
+          if (toggle) toggle.checked = false;
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

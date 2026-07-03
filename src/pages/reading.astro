@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import { books, groupByAuthor } from '../data/books';
+
+const reading = books.filter((b) => b.status === 'reading');
+const readGroups = groupByAuthor(books.filter((b) => b.status === 'read'));
+const listGroups = groupByAuthor(books.filter((b) => b.status === 'list'));
+---
+
+<Base title="Reading · Ishan Kunkur" description="Books I'm reading, have read, and want to read.">
+  <section class="hero" style="padding: 64px 0 24px;">
+    <h1>Reading</h1>
+    <p>
+      What I'm reading now, what I've finished, and the growing pile I'm working
+      through. Grouped by author.
+    </p>
+  </section>
+
+  {reading.length > 0 && (
+    <section class="section" style="padding-top: 24px;">
+      <div class="section-label">Currently reading</div>
+      <div class="book-grid">
+        {reading.map((b) => (
+          <div class="book-tile reading">
+            <span class="book-check now">▸</span>
+            <span>
+              <span class="book-title">{b.title}</span>
+              <span class="book-author"> · {b.author}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="section" style="padding-top: 24px;">
+    <div class="section-label">Read</div>
+    {readGroups.map((g) => (
+      <div class="author-group">
+        <div class="author-name">
+          {g.author}
+          {g.books.length > 1 && <span class="author-count">{g.books.length} books</span>}
+        </div>
+        <div class="book-grid">
+          {g.books.map((b) => (
+            <div class="book-tile">
+              <span class="book-check">✓</span>
+              <span class="book-title">{b.title}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="section" style="padding-top: 24px;">
+    <div class="section-label">On the reading list</div>
+    {listGroups.map((g) => (
+      <div class="author-group">
+        <div class="author-name">
+          {g.author}
+          {g.books.length > 1 && <span class="author-count">{g.books.length} books</span>}
+        </div>
+        <div class="book-grid">
+          {g.books.map((b) => (
+            <div class="book-tile">
+              <span class="book-check unread">○</span>
+              <span class="book-title">{b.title}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Base>

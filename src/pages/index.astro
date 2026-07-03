@@ -1,0 +1,342 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import fs from 'node:fs';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+// Show the photo if it exists in /public, else a nice initials fallback.
+const hasPhoto = fs.existsSync(new URL('../../public/Ishan.jpeg', import.meta.url));
+---
+
+<Base title="Ishan Kunkur · Data, Analytics & Product">
+  <section class="hero">
+    <h1>
+      Hi, I'm Ishan. I turn strategy and data into products, and
+      <span class="gradient-text">chaos into consensus</span>.
+    </h1>
+    <p>
+      I love building cool stuff with cool people.
+    </p>
+    <div class="hero-links">
+      <a href="/#projects" class="btn btn-primary">See my work</a>
+      <a href="mailto:ishangvkunkur@gmail.com" class="btn">Get in touch</a>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-label">About</div>
+    <div class="about">
+      {hasPhoto ? (
+        <img class="about-photo" src="/Ishan.jpeg" alt="Ishan Kunkur" />
+      ) : (
+        <div class="about-photo about-photo-fallback">IK</div>
+      )}
+      <div class="about-body">
+        <p>
+          I started in data and never really left. I just kept trading up for bigger
+          problems to solve, which pulled me from SQL and dashboards into Python and
+          machine learning, and eventually into a seat where I had a say in what we
+          built and who we brought in to ship it. These days I'm building AI agents
+          and products that make sense of payments risk at Walmart. AI is a great
+          equalizer: it knocked down the wall between having an idea and actually
+          shipping it.
+        </p>
+        <p>
+          Lately that same curiosity has me poking under the hood, into how systems
+          scale and stay secure, learning each new piece as the work demands it. The
+          constant across all of it: build things people love, not just things that
+          work.
+        </p>
+        <p>
+          I'm an introvert who learned to love a full room of people. When I'm not
+          building, you'll find me on a trail, in a video game, watching anime, or
+          lost in a book. I also take food and coffee far too seriously. And I'll
+          happily talk your ear off about any of it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-label">Selected work</div>
+
+    <div class="tabs">
+      <input type="radio" name="work-tab" id="tab-pro" class="tab-input" checked />
+      <input type="radio" name="work-tab" id="tab-personal" class="tab-input" />
+      <div class="tab-bar">
+        <label for="tab-pro" class="tab">Professional <span class="tab-count">4</span></label>
+        <label for="tab-personal" class="tab">Personal <span class="tab-count">3</span></label>
+      </div>
+
+      <div class="tab-panel panel-pro">
+    <div class="card">
+      <h3>Multi-Agent AI Credit-Risk System · Walmart</h3>
+      <p>
+        I handed a team of AI agents a job I used to grind through by hand: dig
+        through credit risk, surface what actually matters, and recommend a move.
+        They run on their own now, and have already flagged dozens of high-risk
+        sellers before things got expensive.
+      </p>
+      <div class="meta">Multi-agent AI · Python · LLMs · Payments risk</div>
+    </div>
+
+    <div class="card">
+      <h3>Production ML Risk-Scoring Model · Walmart</h3>
+      <p>
+        Led a risk-scoring model from blank page to production, shoulder to shoulder
+        with data scientists and a lot of AI. It catches high-risk sellers about 77%
+        of the time, and its calls now drive real decisions: credit limits, funding,
+        suspensions.
+      </p>
+      <div class="meta">Product leadership · Machine learning · Data Science partnership</div>
+    </div>
+
+    <div class="card">
+      <h3>AuditBoard (Optro) Product Ownership · Delta</h3>
+      <p>
+        Owned Delta's rollout of AuditBoard (now Optro) across five functions, from
+        Finance to Internal Audit. Automated 45 SOX control tests (there went 700+
+        hours of annual busywork) and shipped 33 analytics products that took
+        reporting from weeks to nearly real time.
+      </p>
+      <div class="meta">Product ownership · GRC · SQL · Power BI</div>
+    </div>
+
+    <div class="card">
+      <h3>Fraud & Recoupment Analytics · Deloitte</h3>
+      <p>
+        Built the analytics that caught what people missed: payroll fraud, money
+        worth clawing back, and compliance risk buried in large loan portfolios. The
+        findings didn't sit in a deck, they shaped what leadership did next.
+      </p>
+      <div class="meta">Analytics · Power BI · Risk · Automation</div>
+    </div>
+      </div>
+
+      <div class="tab-panel panel-personal">
+    <div class="card">
+      <h3>Agentic Trading</h3>
+      <p>
+        An ongoing exploration of how agentic systems can reason about markets,
+        weigh ideas, and act with a human in the loop. Mostly an excuse to learn
+        how autonomous agents actually behave when the stakes feel real.
+      </p>
+      <div class="meta">LLM agents · Python · Claude API</div>
+    </div>
+
+    <div class="card">
+      <h3>TasteGraph</h3>
+      <p>
+        An AI app for people who take food too seriously (guilty). It learns your
+        palate, the cuisines, flavors, and vibe you actually go for, turns it into a
+        food personality, then points you to restaurants worth your time.
+      </p>
+      <div class="meta">Next.js · Claude API · Supabase · Personalization</div>
+    </div>
+
+    <div class="card">
+      <h3>SnoutSketch</h3>
+      <p>
+        A playful web app that turns a close-up of your dog's snout into
+        one-of-a-kind art, reading the unique ridges of their nose and rendering
+        it in styles from vibrant to surreal to line art. Dheera was the first model.
+      </p>
+      <div class="meta">
+        JavaScript · Generative AI · Web ·
+        <a href="https://github.com/Ishan-Kunkur/SnoutSketch" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="journey">
+    <div class="section-label">My Journey</div>
+    <p style="color: var(--text-muted); margin-bottom: 40px; max-width: 560px;">
+      Ten years, three chapters, each building on the last: from data, to machine
+      learning, to AI and product.
+    </p>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2017</div>
+        <div class="tl-phase">Data &amp; BI</div>
+        <div class="tl-desc">
+          Turning raw data into decisions leaders could act on.
+        </div>
+        <div class="chips">
+          <span class="chip">SQL</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Data Governance</span>
+        </div>
+      </div>
+
+      <div class="tl-step">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2021</div>
+        <div class="tl-phase">Programming &amp; ML</div>
+        <div class="tl-desc">
+          Finding the patterns humans were missing across risk data.
+        </div>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Tableau</span>
+          <span class="chip">Machine Learning</span>
+        </div>
+      </div>
+
+      <div class="tl-step">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2024</div>
+        <div class="tl-phase">AI &amp; Product</div>
+        <div class="tl-desc">
+          Shipping production ML and multi-agent AI, and going deeper on the craft of product.
+        </div>
+        <div class="chips">
+          <span class="chip">Claude API</span>
+          <span class="chip">Multi-agent AI</span>
+          <span class="chip">Product</span>
+          <span class="chip">AWS / GCP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="interests">
+    <div class="section-label">Areas of interest</div>
+    <p style="color: var(--text-muted); margin-bottom: 28px; max-width: 560px;">
+      Beyond the day job, the ideas I happily fall down rabbit holes on, the ones
+      that genuinely bring me joy.
+    </p>
+    <div class="pills">
+      <span class="pill">Financial Products</span>
+      <span class="pill">Fintech</span>
+      <span class="pill">Payments</span>
+      <span class="pill">Risk Management</span>
+      <span class="pill">Data</span>
+      <span class="pill">Analytics</span>
+      <span class="pill">Product Management</span>
+      <span class="pill">AI</span>
+      <span class="pill">Machine Learning</span>
+      <span class="pill">LLMs</span>
+      <span class="pill">Agents</span>
+      <span class="pill">Agentic Frameworks</span>
+      <span class="pill">Agentic Commerce</span>
+      <span class="pill">Blockchain</span>
+      <span class="pill">Stablecoins</span>
+      <span class="pill">Tokenization</span>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="section-label">Experience</div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <img class="xp-logo" src="/logos/walmart.png" alt="Walmart" width="34" height="34" />
+        <div>
+          <div class="xp-role">Senior Manager, Data Analytics · Payments &amp; Risk</div>
+          <div class="xp-org">
+            Walmart · USA. Building the Marketplace Payments credit-risk function
+            from the ground up: strategy, production ML, a multi-agent AI system,
+            and leading AI enablement for the Payments org.
+          </div>
+        </div>
+      </div>
+      <div class="xp-date">Oct 2025 – Now</div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <img class="xp-logo" src="/logos/delta.svg" alt="Delta Air Lines" width="34" height="34" />
+        <div>
+          <div class="xp-role">Digital Analytics Program Manager</div>
+          <div class="xp-org">
+            Delta Air Lines · USA. Product Owner for the rollout of AuditBoard (now
+            Optro) across Finance, IT, ERM, SOX and Internal Audit, plus 33 analytics
+            products and ML-driven audit analytics.
+          </div>
+        </div>
+      </div>
+      <div class="xp-date">Oct 2021 – Oct 2025</div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <img class="xp-logo" src="/logos/deloitte.png" alt="Deloitte" width="34" height="34" />
+        <div>
+          <div class="xp-role">Senior Consultant</div>
+          <div class="xp-org">
+            Deloitte · USA. Fraud, recoupment, and compliance analytics from problem
+            definition through delivery, with automated BI that leadership used to act.
+          </div>
+        </div>
+      </div>
+      <div class="xp-date">Jul 2016 – Oct 2021</div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <img class="xp-logo" src="/logos/tcs.svg" alt="Tata Consultancy Services" width="34" height="34" />
+        <div>
+          <div class="xp-role">Systems Engineer</div>
+          <div class="xp-org">
+            Tata Consultancy Services · India. Translated supply-chain and telecom
+            client needs into technical solutions, optimizing procurement and
+            expanding accounts.
+          </div>
+        </div>
+      </div>
+      <div class="xp-date">Feb 2012 – May 2014</div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <div>
+          <div class="xp-role">MBA</div>
+          <div class="xp-org">NC State University · Jenkins Graduate School of Management</div>
+        </div>
+      </div>
+      <div class="xp-date">2015 – 2016</div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <div>
+          <div class="xp-role">MS, Supply Chain Engineering &amp; Management</div>
+          <div class="xp-org">North Carolina State University</div>
+        </div>
+      </div>
+      <div class="xp-date">2014 – 2015</div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-main">
+        <div>
+          <div class="xp-role">BE, Electronics &amp; Communication</div>
+          <div class="xp-org">Gogte Institute of Technology, Karnataka, India</div>
+        </div>
+      </div>
+      <div class="xp-date">2007 – 2011</div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section" id="writing">
+      <div class="section-label">Writing</div>
+      {
+        posts.slice(0, 5).map((post) => (
+          <div class="post-item">
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <span class="post-date">
+              {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </div>
+        ))
+      }
+    </section>
+  )}
+</Base>
