@@ -351,9 +351,104 @@ h1, h2, h3 {
   white-space: nowrap;
 }
 
+/* Blog post header + cover */
+.post-header {
+  padding-top: 48px;
+  margin-bottom: 28px;
+}
+
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+}
+
+.post-dot {
+  margin: 0 6px;
+}
+
+.post-title {
+  font-size: clamp(32px, 5vw, 46px);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.post-subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 620px;
+}
+
+.post-cover {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 40px;
+  display: block;
+}
+
 /* Prose (blog post body) */
 .prose {
   padding-bottom: 64px;
+}
+
+/* Editorial drop cap on the opening paragraph */
+.prose > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.78;
+  font-weight: 700;
+  padding: 6px 12px 0 0;
+  color: var(--accent);
+}
+
+/* Images and figures inside posts */
+.prose img {
+  max-width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: block;
+  margin: 32px 0;
+}
+
+.prose figure {
+  margin: 40px 0;
+}
+
+.prose figure img {
+  margin: 0 0 12px;
+}
+
+.prose figcaption {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* Inline diagram card */
+.diagram {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px 18px;
+  margin: 40px 0;
+}
+
+.diagram svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.diagram-caption {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: 16px;
 }
 
 .prose h1 {
