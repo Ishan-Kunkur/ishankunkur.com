@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import PostCard from '../components/PostCard.astro';
 import fs from 'node:fs';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
@@ -327,16 +328,7 @@ const hasPhoto = fs.existsSync(new URL('../../public/Ishan.jpeg', import.meta.ur
   {posts.length > 0 && (
     <section class="section" id="writing">
       <div class="section-label">Writing</div>
-      {
-        posts.slice(0, 5).map((post) => (
-          <div class="post-item">
-            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-            <span class="post-date">
-              {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-            </span>
-          </div>
-        ))
-      }
+      {posts.slice(0, 4).map((post) => <PostCard post={post} />)}
     </section>
   )}
 </Base>
