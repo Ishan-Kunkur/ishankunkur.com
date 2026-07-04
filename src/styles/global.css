@@ -324,43 +324,41 @@ html[data-theme='dark'] .icon-moon {
   margin-top: 12px;
 }
 
-/* Track Record grid (breaks out wider than the reading column) */
-.track {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  width: min(96vw, 1000px);
-  margin-left: 50%;
-  transform: translateX(-50%);
+/* Chapters — vertical timeline */
+.vt {
+  position: relative;
+  padding-left: 30px;
 }
 
-.track-cell {
-  padding: 22px 20px;
-  border-left: 1px solid var(--border);
+.vt::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0.4;
 }
 
-.track-contrib {
-  font-size: 13.5px;
-  line-height: 1.45;
-  color: var(--text-muted);
-  margin: 12px 0 14px;
+.vt-item {
+  position: relative;
+  padding-bottom: 36px;
 }
 
-.track-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.vt-item:last-child {
+  padding-bottom: 0;
 }
 
-.track-skills .chip {
-  font-size: 11px;
-  padding: 3px 8px;
-}
-
-.track-cell:first-child {
-  border-left: none;
+.vt-dot {
+  position: absolute;
+  left: -30px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
 }
 
 .track-logo {
@@ -371,7 +369,7 @@ html[data-theme='dark'] .icon-moon {
   border: 1px solid var(--border);
   border-radius: 7px;
   padding: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: block;
 }
 
@@ -387,12 +385,31 @@ html[data-theme='dark'] .icon-moon {
   font-size: 23px;
   font-weight: 600;
   line-height: 1.1;
-  margin-bottom: 4px;
 }
 
 .track-role {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.track-contrib {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 10px 0 12px;
+  max-width: 640px;
+}
+
+.track-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.track-skills .chip {
+  font-size: 11px;
+  padding: 3px 8px;
 }
 
 /* Experience list */
@@ -1105,18 +1122,6 @@ a.tag:hover {
   .post-card-thumb {
     width: 100%;
     height: 160px;
-  }
-
-  .track {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .track-cell:nth-child(odd) {
-    border-left: none;
-  }
-
-  .track-cell:nth-child(n + 3) {
-    border-top: 1px solid var(--border);
   }
 
   .footer {
