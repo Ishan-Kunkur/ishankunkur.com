@@ -8,10 +8,26 @@
   --accent: #b4472a;
   --accent-2: #b4472a;
   --ink: #221e1a;
+  --border-hover: #d6cbb6;
+  --reading: #39332c;
   --radius: 12px;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+html[data-theme='dark'] {
+  --bg: #1a1613;
+  --bg-raised: #24201b;
+  --border: #39322a;
+  --border-hover: #4c4338;
+  --text: #f0ebe2;
+  --text-muted: #b4aa9a;
+  --text-faint: #807766;
+  --accent: #e0764e;
+  --accent-2: #e0764e;
+  --ink: #f0ebe2;
+  --reading: #ded7ca;
 }
 
 * {
@@ -63,8 +79,38 @@ h1, h2, h3 {
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   padding: 28px 0;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 6px;
+  border-radius: 8px;
+  transition: color 0.15s;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+}
+
+.icon-sun {
+  display: none;
+}
+
+html[data-theme='dark'] .icon-sun {
+  display: block;
+}
+
+html[data-theme='dark'] .icon-moon {
+  display: none;
 }
 
 .nav-brand {
@@ -185,7 +231,7 @@ h1, h2, h3 {
 }
 
 .btn-primary:hover {
-  background: #3a332c;
+  opacity: 0.88;
 }
 
 /* Tabs (CSS-only, radio-driven) */
@@ -258,7 +304,7 @@ h1, h2, h3 {
 }
 
 .card:hover {
-  border-color: #d6cbb6;
+  border-color: var(--border-hover);
 }
 
 .card h3 {
@@ -405,7 +451,7 @@ h1, h2, h3 {
 }
 
 .post-card:hover {
-  border-color: #d6cbb6;
+  border-color: var(--border-hover);
   text-decoration: none;
 }
 
@@ -609,7 +655,7 @@ a.tag:hover {
 
 .prose p, .prose ul, .prose ol {
   margin-bottom: 20px;
-  color: #39332c;
+  color: var(--reading);
 }
 
 .prose li {
@@ -829,7 +875,7 @@ a.tag:hover {
 }
 
 .book-tile:hover {
-  border-color: #d6cbb6;
+  border-color: var(--border-hover);
 }
 
 .book-tile.reading {
