@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+
+const cos = [
+  { logo: '/logos/tcs.svg', years: '2012 – 2014', co: 'TCS', role: 'Systems Engineer', contrib: 'Where I got my start, turning client needs into technical solutions.', skills: ['Requirements', 'Stakeholders', 'Solutioning'] },
+  { logo: '/logos/deloitte.png', years: '2016 – 2021', co: 'Deloitte', role: 'Senior Consultant', contrib: 'Where data and analytics became my craft, building risk-analytics products that shaped real decisions.', skills: ['SQL', 'Power BI', 'Risk analytics'] },
+  { logo: '/logos/delta.svg', years: '2021 – 2025', co: 'Delta', role: 'Analytics Program Manager', contrib: 'Grew into product ownership; shipped 33 analytics products.', skills: ['Python', 'ML', 'Product ownership'] },
+  { logo: '/logos/walmart.png', years: '2025 – Now', co: 'Walmart', role: 'Sr Manager, Payments & Risk', contrib: 'Building payments-risk products from the ground up, along with the production ML and AI agents that power them.', skills: ['Payments products', 'Production ML', 'AI agents'] },
+];
+---
+
+<Base title="Chapters layout options">
+  <!-- Option 1: Vertical timeline -->
+  <section class="section">
+    <div class="section-label">Option 1 · Vertical timeline</div>
+    <div class="vt">
+      {cos.map((c) => (
+        <div class="vt-item">
+          <div class="vt-dot"></div>
+          <div class="vt-body">
+            <img class="track-logo" src={c.logo} alt={c.co} />
+            <div class="vt-year">{c.years}</div>
+            <div class="vt-co">{c.co} <span class="vt-role">· {c.role}</span></div>
+            <div class="vt-contrib">{c.contrib}</div>
+            <div class="chips">{c.skills.map((s) => <span class="chip">{s}</span>)}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Option 2: Horizontal connected timeline -->
+  <section class="section">
+    <div class="section-label">Option 2 · Horizontal timeline</div>
+    <div class="ht">
+      {cos.map((c) => (
+        <div class="ht-node">
+          <div class="ht-dot"></div>
+          <img class="track-logo" src={c.logo} alt={c.co} />
+          <div class="vt-year">{c.years}</div>
+          <div class="vt-co">{c.co}</div>
+          <div class="vt-role">{c.role}</div>
+          <div class="vt-contrib">{c.contrib}</div>
+          <div class="chips">{c.skills.map((s) => <span class="chip">{s}</span>)}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Option 3: Stepped "climb" -->
+  <section class="section">
+    <div class="section-label">Option 3 · The climb (stepped)</div>
+    <div class="steps">
+      {cos.map((c, i) => (
+        <div class="step" style={`margin-top:${(cos.length - 1 - i) * 46}px`}>
+          <img class="track-logo" src={c.logo} alt={c.co} />
+          <div class="vt-year">{c.years}</div>
+          <div class="vt-co">{c.co}</div>
+          <div class="vt-role">{c.role}</div>
+          <div class="chips">{c.skills.map((s) => <span class="chip">{s}</span>)}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .vt-year { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-faint); margin: 12px 0 6px; }
+  .vt-co { font-family: var(--font-serif); font-size: 22px; font-weight: 600; }
+  .vt-role { color: var(--text-muted); font-weight: 400; font-size: 15px; display: block; margin-top: 2px; }
+  .vt-contrib { font-size: 13.5px; color: var(--text-muted); margin: 8px 0 12px; line-height: 1.45; }
+
+  /* Option 1: vertical */
+  .vt { position: relative; padding-left: 30px; }
+  .vt::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--accent); opacity: 0.5; }
+  .vt-item { position: relative; padding-bottom: 34px; }
+  .vt-item:last-child { padding-bottom: 0; }
+  .vt-dot { position: absolute; left: -30px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  .vt-body .vt-year { margin-top: 0; }
+
+  /* Option 2: horizontal */
+  .ht { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+  .ht::before { content: ''; position: absolute; top: 8px; left: 8px; right: 8px; height: 2px; background: var(--accent); opacity: 0.5; }
+  .ht-node { position: relative; padding-top: 30px; }
+  .ht-dot { position: absolute; top: 0; left: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  .ht-node .vt-co { font-size: 20px; }
+
+  /* Option 3: stepped */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end; }
+  .step { border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 16px; background: var(--bg-raised); }
+  .step .vt-co { font-size: 20px; }
+</style>
