@@ -324,18 +324,39 @@ html[data-theme='dark'] .icon-moon {
   margin-top: 12px;
 }
 
-/* Track Record grid */
+/* Track Record grid (breaks out wider than the reading column) */
 .track {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  width: min(96vw, 1000px);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .track-cell {
   padding: 22px 20px;
   border-left: 1px solid var(--border);
+}
+
+.track-contrib {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 12px 0 14px;
+}
+
+.track-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.track-skills .chip {
+  font-size: 11px;
+  padding: 3px 8px;
 }
 
 .track-cell:first-child {
