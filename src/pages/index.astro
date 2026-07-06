@@ -220,7 +220,10 @@ const hasPhoto = fs.existsSync(new URL('../../public/Ishan.jpeg', import.meta.ur
   {posts.length > 0 && (
     <section class="section" id="writing">
       <div class="section-label">Writing</div>
-      {posts.slice(0, 4).map((post) => <PostCard post={post} />)}
+      {posts.slice(0, 3).map((post) => <PostCard post={post} />)}
+      {posts.length > 3 && (
+        <a class="see-all" href="/blog">See all writing →</a>
+      )}
     </section>
   )}
 </Base>

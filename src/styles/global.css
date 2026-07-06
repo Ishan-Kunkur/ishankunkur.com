@@ -525,6 +525,25 @@ html[data-theme='dark'] .icon-moon {
   display: block;
 }
 
+/* Blog archive year heading */
+.year-label {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-faint);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* "See all writing" link */
+.see-all {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
 /* Post preview cards (Writing list + blog index) */
 .post-card {
   display: flex;

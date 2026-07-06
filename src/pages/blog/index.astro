@@ -9,6 +9,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
 const tagSlug = (t) => t.toLowerCase().replace(/\s+/g, '-');
 const allTags = [...new Set(posts.flatMap((p) => p.data.tags ?? []))].sort();
+
+// Group posts by year (newest year first)
+const byYear = new Map();
+for (const post of posts) {
+  const y = post.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y).push(post);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
 ---
 
 <Base title="Writing · Ishan Kunkur" description="Occasional writing on whatever I'm thinking about.">
@@ -25,7 +34,10 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags ?? []))].sort();
     </section>
   )}
 
-  <section class="section" style="padding-top: 24px;">
-    {posts.map((post) => <PostCard post={post} />)}
-  </section>
+  {years.map((year) => (
+    <section class="section" style="padding-top: 24px;">
+      <div class="year-label">{year}</div>
+      {byYear.get(year).map((post) => <PostCard post={post} />)}
+    </section>
+  ))}
 </Base>
