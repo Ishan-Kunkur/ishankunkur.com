@@ -4,7 +4,7 @@ description: "What a blockchain actually is, how it works, and where it's genuin
 date: 2026-07-06
 tags: ["Blockchain", "Distributed Systems", "Fintech", "Explainer"]
 readingTime: "9 min read"
-cover: "/blog/blockchain/01_block_anatomy.png"
+cover: "/blog/blockchain/01_block_anatomy_v2.png"
 coverAlt: "Anatomy of a block: a header holding the previous hash, Merkle root, timestamp and nonce, sitting above a body of transactions."
 draft: false
 ---
@@ -37,7 +37,7 @@ Every block's header contains the hash of the *previous* block. So block #4,812 
 
 This chaining is why you can't quietly rewrite history. If a bad actor edits a transaction in an old block, that block's fingerprint changes, which means the "previous hash" stored in the *next* block no longer matches. That mismatch cascades forward, breaking every seal down the line.
 
-![Two chains compared: an honest chain where every seal matches, and a tampered chain where editing one block breaks every link after it.](/blog/blockchain/02_chain_tamper.png)
+![Two chains compared: an honest chain where every seal matches, and a tampered chain where editing one block breaks every link after it.](/blog/blockchain/02_chain_tamper_v2.png)
 *Edit one page and its fingerprint changes, so the next page's back-pointer no longer matches. The break is instantly visible to everyone.*
 
 To successfully forge the record, you wouldn't just re-seal one page. You'd have to re-seal that page **and every page after it**, faster than the rest of the network is adding new ones, on a majority of the world's copies simultaneously. That's the wall attackers keep running into.
@@ -46,7 +46,7 @@ To successfully forge the record, you wouldn't just re-seal one page. You'd have
 
 So how does a payment get from "send" to permanently recorded? It moves through a short pipeline.
 
-![Six-step transaction lifecycle: request, broadcast, validate, bundle, consensus, append.](/blog/blockchain/04_transaction_lifecycle.png)
+![Six-step transaction lifecycle: request, broadcast, validate, bundle, consensus, append.](/blog/blockchain/04_transaction_lifecycle_v2.png)
 *A transaction's journey from signature to permanent record, usually seconds to minutes depending on the network.*
 
 1. **Request.** Alice signs a transaction with her *private key*, a secret only she holds. The signature proves it's really her without revealing the key.
@@ -60,7 +60,7 @@ So how does a payment get from "send" to permanently recorded? It moves through 
 
 Step 5 is the clever part. With no central authority, how do thousands of strangers agree on which block comes next, and trust that no one is gaming the system? This is the **consensus mechanism**, and two recipes dominate.
 
-![Proof of Work versus Proof of Stake compared across the contest, the winner, the deterrent, and the trade-off.](/blog/blockchain/05_consensus.png)
+![Proof of Work versus Proof of Stake compared across the contest, the winner, the deterrent, and the trade-off.](/blog/blockchain/05_consensus_v2.png)
 *Two ways to answer "who adds the next block, and why won't they cheat?"*
 
 **Proof of Work** (Bitcoin) turns block-creation into a costly puzzle. Miners burn real electricity racing to find a special number; the winner proposes the next block and earns a reward. Cheating is deterred because attacking the network would cost a staggering amount of energy and hardware. It's battle-tested and extremely secure, but power-hungry.
@@ -73,7 +73,7 @@ Either way, the goal is the same: make honesty cheaper than cheating.
 
 Traditional bookkeeping has worked for centuries, and for good reason. But it rests on a single assumption: **there is one trusted keeper of the truth.** Your bank knows your balance. The land registry knows who owns the house. When you disagree with the record, you have to convince that authority to change it.
 
-![Centralized ledger where users depend on one keeper, versus a distributed mesh where every node holds an identical copy.](/blog/blockchain/03_centralized_vs_distributed.png)
+![Centralized ledger where users depend on one keeper, versus a distributed mesh where every node holds an identical copy.](/blog/blockchain/03_centralized_vs_distributed_v2.png)
 *Same records, but moving from one master copy to many changes the trust model entirely.*
 
 The difference isn't the data; it's **who you have to trust.**
@@ -116,7 +116,7 @@ That last one matters most: **a blockchain is worth its cost only when no single
 
 Some uses are already mainstream; others are promising but still maturing.
 
-![Applications split into 'here today' (digital money, DeFi, supply chain, ownership records) and 'on the horizon' (digital identity, tokenised assets, agentic payments, public records).](/blog/blockchain/06_applications.png)
+![Applications split into 'here today' (digital money, DeFi, supply chain, ownership records) and 'on the horizon' (digital identity, tokenised assets, agentic payments, public records).](/blog/blockchain/06_applications_v2.png)
 *Live and mainstream on the left; real potential still being proven out on the right.*
 
 **Working today:**
