@@ -793,6 +793,32 @@ a.tag:hover {
   padding: 0;
 }
 
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 14px;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--border);
+  padding: 9px 13px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--bg-raised);
+  font-weight: 600;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 40px 0;
+}
+
 .prose blockquote {
   border-left: 3px solid var(--accent);
   padding-left: 20px;
