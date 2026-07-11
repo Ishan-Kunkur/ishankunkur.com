@@ -6,7 +6,7 @@ tags: ["Blockchain", "Distributed Systems", "Fintech", "Explainer"]
 readingTime: "9 min read"
 cover: "/blog/blockchain/01_block_anatomy.png"
 coverAlt: "Anatomy of a block: a header holding the previous hash, Merkle root, timestamp and nonce, sitting above a body of transactions."
-draft: true
+draft: false
 ---
 
 Most explanations of blockchain start with a wall of jargon (*distributed*, *immutable*, *trustless*, *cryptographic*) and hope you nod along. Let's do the opposite. Here is the whole idea in one sentence:
