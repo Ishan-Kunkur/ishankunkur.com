@@ -43,6 +43,23 @@ const ogImage = image ? (image.startsWith('http') ? image : `${site}${image}`) :
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Ishan Kunkur',
+        url: site,
+        image: `${site}/headshot.png`,
+        jobTitle: 'Product Leader',
+        description: 'Product leader in risk, payments, and AI.',
+        sameAs: [
+          'https://github.com/Ishan-Kunkur',
+          'https://x.com/yagilabs',
+        ],
+      })}
+    />
   </head>
   <body>
     <div class="container">
